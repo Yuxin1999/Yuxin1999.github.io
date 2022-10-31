@@ -93,7 +93,7 @@
                 
                     <a href="/tags/" class="navbar-menu button">标签</a>
                 
-                    <a href="/archives/" class="navbar-menu button">归档</a>
+                    <a href="/archives/" class="navbar-menu button">时间轴</a>
                 
                     <a href="/friends/" class="navbar-menu button">友链</a>
                 
@@ -115,7 +115,7 @@
                 
                     <a href="/tags/" class="dropdown-menu button">标签</a>
                 
-                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                    <a href="/archives/" class="dropdown-menu button">时间轴</a>
                 
                     <a href="/friends/" class="dropdown-menu button">友链</a>
                 
@@ -150,14 +150,46 @@
 </div>
 
 
+    <aside class="post-side">
+        <div class="post-side__toc">
+            
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        
+    </div>
 
-<article class="post content-card">
-    <div class="post__header"></div>
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    
+        <div class="post-thumbnail" style="background-image: url('images/default_image.jpg');"></div>
+    
+</div>
     <div class="post__content">
         
     </div>
-     
-    <div class="post-footer__meta"><p>更新於 2022-10-30</p></div> 
+    
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>小星
+        </p>
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="http://yuxin1999.github.io/2022/10/30/Hello-World/">http://yuxin1999.github.io/2022/10/30/Hello-World/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>更新于 2022-10-30</p></div> 
     <div class="post-entry__tags"></div> 
 </article>
 
@@ -181,7 +213,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2022 <a href="/">小星居</a>
+            Copyright © 2022&nbsp;-&nbsp;2022 <a href="/">小星居</a>
         </p>
     
     
