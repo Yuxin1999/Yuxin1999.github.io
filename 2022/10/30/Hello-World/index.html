@@ -196,6 +196,26 @@
 
 
 
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>评论</h4>
+    
+    
+    
+    
+    
+    
+    
+    <div id="artalk_thread"></div>
+
+    
+    
+    
+    
+
+
+    </div>
+
 
 
 </main>
@@ -253,6 +273,65 @@
 
  
 
+
+    
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    <script>
+        function loadComment() {
+            let e, i;
+            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/artalk@1.0.6/dist/Artalk.js',
+            document.body.appendChild(e);
+            e.onload = () => {
+                var artalkConfig = {"serverUrl":"http://yuxin1999.github.io:23366","placeholder":null,"noComment":null,"defaultAvatar":null,"pageKey":null,"gravatar":{"cdn":null},"readMore":{"pageSize":null,"autoLoad":null},"emoticons":null};
+                artalkConfig.el = '#artalk_thread';
+                for (var i in artalkConfig) {
+                    if (artalkConfig[i] === null) delete artalkConfig[i];
+                }
+                new Artalk(artalkConfig);
+            };
+            (i = document.createElement("link")).rel = "stylesheet",
+            i.href = 'https://cdn.jsdelivr.net/npm/artalk@1.0.6/dist/Artalk.css',
+            document.head.appendChild(i);
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+    
+    
+    
+    
+
+    
+    
+    
 
 
 
