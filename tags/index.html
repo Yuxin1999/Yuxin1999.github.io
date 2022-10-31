@@ -95,9 +95,9 @@
                 
                     <a href="/archives/" class="navbar-menu button">时间轴</a>
                 
-                    <a href="/friends/" class="navbar-menu button">友链</a>
+                    <a href="/friends/" class="navbar-menu button">友情链接</a>
                 
-                    <a href="/page/" class="navbar-menu button">Page</a>
+                    <a href="/search/" class="navbar-menu button">搜索</a>
                 
             </div>
         
@@ -117,9 +117,9 @@
                 
                     <a href="/archives/" class="dropdown-menu button">时间轴</a>
                 
-                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                    <a href="/friends/" class="dropdown-menu button">友情链接</a>
                 
-                    <a href="/page/" class="dropdown-menu button">Page</a>
+                    <a href="/search/" class="dropdown-menu button">搜索</a>
                 
             </div>
         
@@ -161,7 +161,7 @@
         </svg>
     </a>
     <div class="toc-menus" id="toc-menus">
-        <div class="toc-title">文章目录</div>
+        <div class="toc-title">Article Directory</div>
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#layout-tag"><span class="toc-number">1.</span> <span class="toc-text">layout: tag</span></a></li></ol>
     </div>
 
@@ -179,43 +179,23 @@
     
     <div class="post__license">
         <p>
-            <strong>本文作者：</strong>小星
+            <strong>Author: </strong>小星
         </p>
         <p>
             <strong>
-                本文链接：
+                Permalink: 
             </strong>
             <a href="http://yuxin1999.github.io/tags/index.html">http://yuxin1999.github.io/tags/index.html</a>
         </p>
         
     </div>
  
-    <div class="post-footer__meta"><p>更新于 2022-10-31</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-10-31</p></div> 
     <div class="post-entry__tags"></div> 
 </article>
 
 
 
-
-    <div class="post__comments post__with-toc content-card" id="comment">
-        
-    <h4>评论</h4>
-    
-    
-    
-    
-    
-    
-    
-    <div id="artalk_thread"></div>
-
-    
-    
-    
-    
-
-
-    </div>
 
 
 
@@ -223,7 +203,7 @@
 
             <footer class="footer">
      
-    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
             <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
         </svg>
@@ -298,65 +278,6 @@
 
  
 
-
-    
-
-    
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    <script>
-        function loadComment() {
-            let e, i;
-            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/artalk@1.0.6/dist/Artalk.js',
-            document.body.appendChild(e);
-            e.onload = () => {
-                var artalkConfig = {"serverUrl":"http://yuxin1999.github.io:23366","placeholder":null,"noComment":null,"defaultAvatar":null,"pageKey":null,"gravatar":{"cdn":null},"readMore":{"pageSize":null,"autoLoad":null},"emoticons":null};
-                artalkConfig.el = '#artalk_thread';
-                for (var i in artalkConfig) {
-                    if (artalkConfig[i] === null) delete artalkConfig[i];
-                }
-                new Artalk(artalkConfig);
-            };
-            (i = document.createElement("link")).rel = "stylesheet",
-            i.href = 'https://cdn.jsdelivr.net/npm/artalk@1.0.6/dist/Artalk.css',
-            document.head.appendChild(i);
-        }
-    
-        var runningOnBrowser = typeof window !== "undefined";
-        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
-        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
-    
-        setTimeout(function () {
-            if (!isBot && supportsIntersectionObserver) {
-                var comment_observer = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        loadComment();
-                        comment_observer.disconnect();
-                    }
-                }, { threshold: [0] });
-                comment_observer.observe(document.getElementById('comment'));
-            } else {
-                loadComment();
-            }
-        }, 1);
-    </script>
-
-    
-    
-    
-    
-
-    
-    
-    
 
 
 
