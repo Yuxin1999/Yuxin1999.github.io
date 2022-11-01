@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="cn">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple_touch_icon.png">
+    
+    
+        <link rel="mask-icon" href="/iamges/favicon/safari_pinned_tab.svg">
+    
+
+
+    <!-- meta -->
+
+
+<title>实验室工作站配置记录 | 小星居</title>
+
+
+    <meta name="keywords" content="Linux 运维">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="给实验室配置新的服务器，具体配置如下：  CPU：Xeon 2.5 G x 2，40核80进程 内存：32GX4 存储：8T 显卡：3090 x 2 系统：ubuntu20.02  1 基础配置1.1 系统成员管理与登录1.1.1 更改user密码使用随机生成的高强度密码代替原始密码，保证服务器安全性 1sudo passwd user  1.1.2 创建成员组与成员由于该服务器需要多个用途：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验室工作站配置记录">
+<meta property="og:url" content="http://yuxin1999.github.io/2022/11/01/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%B7%A5%E4%BD%9C%E7%AB%99%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="小星居">
+<meta property="og:description" content="给实验室配置新的服务器，具体配置如下：  CPU：Xeon 2.5 G x 2，40核80进程 内存：32GX4 存储：8T 显卡：3090 x 2 系统：ubuntu20.02  1 基础配置1.1 系统成员管理与登录1.1.1 更改user密码使用随机生成的高强度密码代替原始密码，保证服务器安全性 1sudo passwd user  1.1.2 创建成员组与成员由于该服务器需要多个用途：">
+<meta property="og:locale">
+<meta property="og:image" content="http://yuxin1999.github.io/images/cover/autumn.jpg">
+<meta property="article:published_time" content="2022-11-01T13:44:37.000Z">
+<meta property="article:modified_time" content="2022-11-01T12:44:12.473Z">
+<meta property="article:author" content="小星">
+<meta property="article:tag" content="Linux 运维">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yuxin1999.github.io/images/cover/autumn.jpg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">小星居</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">时间轴</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友情链接</a>
+                
+                    <a href="/search/" class="navbar-menu button">搜索</a>
+                
+            </div>
+        
+        
+        
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">时间轴</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友情链接</a>
+                
+                    <a href="/search/" class="dropdown-menu button">搜索</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        实验室工作站配置记录
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/11/" class="post-meta__date button">2022-11-01</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%B3%BB%E7%BB%9F%E6%88%90%E5%91%98%E7%AE%A1%E7%90%86%E4%B8%8E%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">1.1 系统成员管理与登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E6%9B%B4%E6%94%B9user%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1 更改user密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E5%88%9B%E5%BB%BA%E6%88%90%E5%91%98%E7%BB%84%E4%B8%8E%E6%88%90%E5%91%98"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2 创建成员组与成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E8%8E%B7%E5%8F%96%E5%9B%BA%E5%AE%9A%E5%B1%80%E5%9F%9F%E7%BD%91IP%EF%BC%88%E6%A0%A1%E5%9B%AD%E7%BD%91%E7%94%A8%E6%88%B7%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%90%8E%E9%9D%A2%E9%80%A0%E6%88%90%E5%BE%88%E5%A4%9Abug%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3 获取固定局域网IP（校园网用户不建议使用，后面造成很多bug）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">1.2 安全登录设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-%E4%BF%AE%E6%94%B9ssh%E7%AB%AF%E5%8F%A322"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 修改ssh端口22</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-%E7%A6%81%E7%94%A8%E8%BF%9C%E7%A8%8Broot%E7%99%BB%E5%BD%95"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2 禁用远程root登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-%E4%BF%AE%E6%94%B9rsa%E7%99%BB%E5%BD%95"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3 修改rsa登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-%E7%A6%81%E6%AD%A2%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4 禁止密码登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">2.1 图形界面基础软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E6%8B%BC%E9%9F%B3%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">2.1.1 拼音输入法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-Pycharm%E5%AE%89%E8%A3%85"><span class="toc-number">3.2.</span> <span class="toc-text">2.1.2 Pycharm安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">2.2 环境相关安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.1.</span> <span class="toc-text">2.2.1 显卡驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-conda%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-number">4.2.</span> <span class="toc-text">2.2.2 conda环境与安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-cuda%E5%AE%89%E8%A3%85"><span class="toc-number">4.3.</span> <span class="toc-text">2.2.3 cuda安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">3.1 基础配置问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E6%9B%B4%E6%96%B0%E6%BA%90"><span class="toc-number">5.1.</span> <span class="toc-text">3.1.1 更新源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%B6%88%E5%A4%B1"><span class="toc-number">5.2.</span> <span class="toc-text">3.1.2 有线网络连接消失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5"><span class="toc-number">5.3.</span> <span class="toc-text">3.1.3 无法打开网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4-%E5%88%86%E8%BE%A8%E7%8E%87%E9%97%AE%E9%A2%98"><span class="toc-number">5.4.</span> <span class="toc-text">3.1.4 分辨率问题</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E7%B3%BB%E7%BB%9F%E6%88%90%E5%91%98%E7%AE%A1%E7%90%86%E4%B8%8E%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">1.1 系统成员管理与登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E6%9B%B4%E6%94%B9user%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1 更改user密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E5%88%9B%E5%BB%BA%E6%88%90%E5%91%98%E7%BB%84%E4%B8%8E%E6%88%90%E5%91%98"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2 创建成员组与成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E8%8E%B7%E5%8F%96%E5%9B%BA%E5%AE%9A%E5%B1%80%E5%9F%9F%E7%BD%91IP%EF%BC%88%E6%A0%A1%E5%9B%AD%E7%BD%91%E7%94%A8%E6%88%B7%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%90%8E%E9%9D%A2%E9%80%A0%E6%88%90%E5%BE%88%E5%A4%9Abug%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3 获取固定局域网IP（校园网用户不建议使用，后面造成很多bug）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">1.2 安全登录设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-%E4%BF%AE%E6%94%B9ssh%E7%AB%AF%E5%8F%A322"><span class="toc-number">2.1.</span> <span class="toc-text">1.2.1 修改ssh端口22</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-%E7%A6%81%E7%94%A8%E8%BF%9C%E7%A8%8Broot%E7%99%BB%E5%BD%95"><span class="toc-number">2.2.</span> <span class="toc-text">1.2.2 禁用远程root登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-%E4%BF%AE%E6%94%B9rsa%E7%99%BB%E5%BD%95"><span class="toc-number">2.3.</span> <span class="toc-text">1.2.3 修改rsa登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-%E7%A6%81%E6%AD%A2%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">2.4.</span> <span class="toc-text">1.2.4 禁止密码登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">2.1 图形界面基础软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E6%8B%BC%E9%9F%B3%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">2.1.1 拼音输入法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-Pycharm%E5%AE%89%E8%A3%85"><span class="toc-number">3.2.</span> <span class="toc-text">2.1.2 Pycharm安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">2.2 环境相关安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">4.1.</span> <span class="toc-text">2.2.1 显卡驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-conda%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AE%89%E8%A3%85"><span class="toc-number">4.2.</span> <span class="toc-text">2.2.2 conda环境与安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-cuda%E5%AE%89%E8%A3%85"><span class="toc-number">4.3.</span> <span class="toc-text">2.2.3 cuda安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">3.1 基础配置问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E6%9B%B4%E6%96%B0%E6%BA%90"><span class="toc-number">5.1.</span> <span class="toc-text">3.1.1 更新源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E6%9C%89%E7%BA%BF%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%B6%88%E5%A4%B1"><span class="toc-number">5.2.</span> <span class="toc-text">3.1.2 有线网络连接消失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5"><span class="toc-number">5.3.</span> <span class="toc-text">3.1.3 无法打开网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-4-%E5%88%86%E8%BE%A8%E7%8E%87%E9%97%AE%E9%A2%98"><span class="toc-number">5.4.</span> <span class="toc-text">3.1.4 分辨率问题</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    
+        <div class="post-thumbnail lazy" data-bg="/images/cover/autumn.jpg"></div>
+    
+</div>
+    <div class="post__content">
+        <p>给实验室配置新的服务器，具体配置如下：</p>
+<ul>
+<li>CPU：Xeon 2.5 G x 2，40核80进程</li>
+<li>内存：32GX4</li>
+<li>存储：8T</li>
+<li>显卡：3090 x 2</li>
+<li>系统：ubuntu20.02</li>
+</ul>
+<h1 id="1-基础配置"><a href="#1-基础配置" class="headerlink" title="1 基础配置"></a>1 基础配置</h1><h2 id="1-1-系统成员管理与登录"><a href="#1-1-系统成员管理与登录" class="headerlink" title="1.1 系统成员管理与登录"></a>1.1 系统成员管理与登录</h2><h3 id="1-1-1-更改user密码"><a href="#1-1-1-更改user密码" class="headerlink" title="1.1.1 更改user密码"></a>1.1.1 更改user密码</h3><p>使用随机生成的高强度密码代替原始密码，保证服务器安全性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd user</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-2-创建成员组与成员"><a href="#1-1-2-创建成员组与成员" class="headerlink" title="1.1.2 创建成员组与成员"></a>1.1.2 创建成员组与成员</h3><p>由于该服务器需要多个用途：</p>
+<ol>
+<li>实验室计算需要</li>
+<li>网站搭建需要</li>
+</ol>
+<p>因此需要对其进行严格限制与区分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对于实验室成员，创建成员组lab</span></span><br><span class="line">sudo groupadd lab</span><br><span class="line"></span><br><span class="line"><span class="comment"># 向成员组中添加成员</span></span><br><span class="line">sudo useradd user_name -g lab -m</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有用户和用户组</span></span><br><span class="line">cat /etc/passwd</span><br><span class="line">cat /etc/group</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-1-3-获取固定局域网IP（校园网用户不建议使用，后面造成很多bug）"><a href="#1-1-3-获取固定局域网IP（校园网用户不建议使用，后面造成很多bug）" class="headerlink" title="1.1.3 获取固定局域网IP（校园网用户不建议使用，后面造成很多bug）"></a>1.1.3 <del>获取固定局域网IP（校园网用户不建议使用，后面造成很多bug）</del></h3><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19734597/article/details/104087091">https://blog.csdn.net/qq_19734597&#x2F;article&#x2F;details&#x2F;104087091</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装ifupdown </span></span><br><span class="line">sudo apt install ifupdown</span><br><span class="line"><span class="comment"># 查看网卡名称</span></span><br><span class="line">ifconfig</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">输出第一行eno1为网卡名称</span></span><br><span class="line"><span class="string">eno1:flags=4163....</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 查看网关地址</span></span><br><span class="line">netstat -r</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">输出第一列中类ipv4地址192.168.11.2即为网关地址</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># 修改配置文件</span></span><br><span class="line">sudo vim /etc/network/interfaces</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置文件修改如下</span></span><br><span class="line">iface **eno1** inet static <span class="comment"># 填网卡名称</span></span><br><span class="line">address <span class="number">192.168</span><span class="number">.11</span><span class="number">.135</span></span><br><span class="line">**gateway** <span class="number">192.168</span><span class="number">.11</span><span class="number">.2</span> <span class="comment"># 填自己的网关</span></span><br><span class="line">netmask <span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">dns-nameservers <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启网络服务</span></span><br><span class="line">sudo service network-manager restart</span><br><span class="line"></span><br><span class="line"><span class="comment">#ifconfig查看局域网地址</span></span><br></pre></td></tr></table></figure>
+
+<p>修改后重启电脑时，可能会导致网络消失，解决方法查看基础配置问题&#x2F;有线网络消失</p>
+<h2 id="1-2-安全登录设置"><a href="#1-2-安全登录设置" class="headerlink" title="1.2 安全登录设置"></a>1.2 安全登录设置</h2><h3 id="1-2-1-修改ssh端口22"><a href="#1-2-1-修改ssh端口22" class="headerlink" title="1.2.1 修改ssh端口22"></a>1.2.1 修改ssh端口22</h3><p>ssh默认端口为22，但从安全方面考虑，建议修改1024到65535</p>
+<p><strong>修改为5160</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/ssh_config</span><br><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line"><span class="comment"># 取消Port前注释并将端口改成5160</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启sshd服务</span></span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-2-禁用远程root登录"><a href="#1-2-2-禁用远程root登录" class="headerlink" title="1.2.2 禁用远程root登录"></a>1.2.2 禁用远程root登录</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line"><span class="comment"># 把permitrootlogin 改成 no</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-3-修改rsa登录"><a href="#1-2-3-修改rsa登录" class="headerlink" title="1.2.3 修改rsa登录"></a>1.2.3 修改rsa登录</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在自己本地电脑生成公钥与私钥</span></span><br><span class="line">ssh-keygen</span><br><span class="line"><span class="comment"># 将id_rsa.pub转移到服务器上</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在该用户工作区，新建.ssh文件夹，在.ssh文件夹中新建文件authorized_keys</span></span><br><span class="line"><span class="comment"># 添加公钥至authorized_keys</span></span><br><span class="line">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调整权限</span></span><br><span class="line">chmod <span class="number">600</span> authorized_keys</span><br><span class="line">chmod <span class="number">700</span> ~/.ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置服务器ssh</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment"># 取消以下两行的注释</span></span><br><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-4-禁止密码登录"><a href="#1-2-4-禁止密码登录" class="headerlink" title="1.2.4 禁止密码登录"></a>1.2.4 禁止密码登录</h3><p>为了防止不同用户使用弱密码时被攻破，只允许使用公钥私钥配对登录</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment"># 修改</span></span><br><span class="line">PasswordAuthencation no</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-软件安装"><a href="#2-软件安装" class="headerlink" title="2 软件安装"></a>2 软件安装</h1><h2 id="2-1-图形界面基础软件"><a href="#2-1-图形界面基础软件" class="headerlink" title="2.1 图形界面基础软件"></a>2.1 图形界面基础软件</h2><h3 id="2-1-1-拼音输入法"><a href="#2-1-1-拼音输入法" class="headerlink" title="2.1.1 拼音输入法"></a>2.1.1 拼音输入法</h3><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/kan2016/article/details/105735645">https://blog.csdn.net/kan2016/article/details/105735645</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装fcitx</span></span><br><span class="line">sudo apt install fcitx</span><br><span class="line"><span class="comment"># 此处踩坑：unable to locate package fcitx</span></span><br><span class="line"><span class="comment"># 原因：需要更新源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置Fcitx</span></span><br><span class="line">im-config <span class="comment"># 选择fcitx</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装谷歌输入法</span></span><br><span class="line">sudo apt install fcitx-fooflepinyin -y</span><br><span class="line">fcitx-config-gtk3sudo <span class="comment"># 选择Google-pinyin并确认</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-2-Pycharm安装"><a href="#2-1-2-Pycharm安装" class="headerlink" title="2.1.2 Pycharm安装"></a>2.1.2 Pycharm安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 官网下载对应版本</span></span><br><span class="line"><span class="comment"># 解压至opt文件夹（opt文件夹用于安装额外的软件,在root用户下安装）</span></span><br><span class="line">tar-zxvf pycharm-community.tar.gz -C /opt</span><br><span class="line"><span class="comment"># 进入opt/pycharm/bin</span></span><br><span class="line">sh pycharm.sh</span><br><span class="line">完成配置</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-环境相关安装"><a href="#2-2-环境相关安装" class="headerlink" title="2.2 环境相关安装"></a>2.2 环境相关安装</h2><h3 id="2-2-1-显卡驱动"><a href="#2-2-1-显卡驱动" class="headerlink" title="2.2.1 显卡驱动"></a>2.2.1 显卡驱动</h3><ol>
+<li>卸载旧驱动</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get --purge remove nvidia*</span><br><span class="line">sudo apt autoremove</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>重装驱动</li>
+</ol>
+<p>在<a target="_blank" rel="noopener" href="https://www.nvidia.cn/Download/index.aspx?lang=cn">Nvidia官网</a>下载对应的驱动版本：</p>
+<p><img src="/images/posts/Nvidia.png" class="lazy" data-srcset="/images/posts/Nvidia.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="Nividia官网下载"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 给驱动文件赋予执行权限</span></span><br><span class="line">sudo chmod  a+x (下载的驱动文件）</span><br><span class="line"><span class="comment"># 安装驱动</span></span><br><span class="line">sudo ./驱动文件name -no-x-check -no-nouveau-check -no-opengl-files</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2-conda环境与安装"><a href="#2-2-2-conda环境与安装" class="headerlink" title="2.2.2 conda环境与安装"></a>2.2.2 conda环境与安装</h3><p>参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/459607806">https://zhuanlan.zhihu.com/p/459607806</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每个用户独立安装自己的conda</span></span><br><span class="line"><span class="comment"># 进入data/anaconda3</span></span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-<span class="number">2021.11</span>-Linux-x86_64.sh</span><br><span class="line"><span class="comment"># 安装(在普通用户下</span></span><br><span class="line">bash Anaconda3-<span class="number">2021.11</span>-Linux-x86_64.sh</span><br><span class="line"><span class="comment"># 安装路径设置在home/user/anaconda3</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-3-cuda安装"><a href="#2-2-3-cuda安装" class="headerlink" title="2.2.3 cuda安装"></a>2.2.3 cuda安装</h3><p>在<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit-archive">Nvidia官网</a>下载对应CUDA版本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装cuda</span></span><br><span class="line">sudo sh cuda_11<span class="number">.7</span><span class="number">.0_515</span><span class="number">.43</span><span class="number">.04</span>_linux.run</span><br><span class="line"> </span><br><span class="line">配置环境变量</span><br><span class="line">vim  ~/.bashrc</span><br><span class="line"> </span><br><span class="line">export PATH=/usr/local/cuda-<span class="number">11.7</span>/<span class="built_in">bin</span>$&#123;PATH:+:$&#123;PATH&#125;&#125;</span><br><span class="line">export LD_LIBRARY_PATH=/usr/local/cuda-<span class="number">11.7</span>/lib64$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 更新环境变量</span></span><br><span class="line">source ~/.bashrc</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 查看cuda是否安装成功</span></span><br><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-过程中遇到的问题"><a href="#3-过程中遇到的问题" class="headerlink" title="3 过程中遇到的问题"></a>3 过程中遇到的问题</h1><h2 id="3-1-基础配置问题"><a href="#3-1-基础配置问题" class="headerlink" title="3.1 基础配置问题"></a>3.1 基础配置问题</h2><h3 id="3-1-1-更新源"><a href="#3-1-1-更新源" class="headerlink" title="3.1.1 更新源"></a>3.1.1 更新源</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份原来的源</span></span><br><span class="line">sudo cp /etc/apt/source.<span class="built_in">list</span> /etc/apt/sources.<span class="built_in">list</span>.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用vim打开并编辑source.list</span></span><br><span class="line">sudo vim /etc/apt/source.<span class="built_in">list</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件中添加源</span></span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse </span><br><span class="line"></span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse focal</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新源</span></span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-1-2-有线网络连接消失"><a href="#3-1-2-有线网络连接消失" class="headerlink" title="3.1.2 有线网络连接消失"></a>3.1.2 有线网络连接消失</h3><ul>
+<li>原因：由于<code>/etc/network/interfaces</code>的手动修改而导致<code>network-manager</code>自动停止对系统网络的管理，从而系统开始使用<code>/etc/network/interfaces</code>文件内的参数进行网络配置。</li>
+<li>解决方法(root用户下进行）：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除缓存文件</span></span><br><span class="line">sudo service network-manager stop</span><br><span class="line">sudo rm /var/lib/NetworkManager/NetworkManager.state</span><br><span class="line">sudo service network-manager start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改网络控制配置</span></span><br><span class="line">sudo vi /etc/NetworkManager/NetworkManager.conf</span><br><span class="line"><span class="comment">#将managed=false更改为true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启NetworkManager</span></span><br><span class="line">sudo service network-manager restart</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后可以通过图形界面连接</li>
+</ul>
+<h3 id="3-1-3-无法打开网页"><a href="#3-1-3-无法打开网页" class="headerlink" title="3.1.3 无法打开网页"></a>3.1.3 无法打开网页</h3><p>正常连接校园网，一段时间后无法打开任何网页，重启网络服务无效，ifconfig命令显示正常。</p>
+<p>用Ping检查网络</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ping baidu.com</span><br><span class="line"><span class="comment"># Temporary failure in name resolution</span></span><br><span class="line">ping <span class="number">202.108</span><span class="number">.22</span><span class="number">.5</span></span><br><span class="line"><span class="comment"># 直接ping百度域名，packet loss</span></span><br><span class="line">ping6 <span class="number">2402</span>:<span class="number">4e00</span>:<span class="number">40</span>:<span class="number">40</span>::<span class="number">2</span>:3b6</span><br><span class="line"><span class="comment"># ping ipv6地址，成功</span></span><br></pre></td></tr></table></figure>
+
+<p>查阅可能是DNS解析的问题，导致无法连接所网认证ipv4，因此只能Ping通ipv6地址</p>
+<p>利用网上的方法修改均不能奏效，考虑到在修改静态IP时，建议校园网用户不要使用，因此只能把之前关于网络的设置改回来，改回来后就能够正常上网了。可能是静态IP设置了静态DNS与默认DNS不符。</p>
+<h3 id="3-1-4-分辨率问题"><a href="#3-1-4-分辨率问题" class="headerlink" title="3.1.4 分辨率问题"></a>3.1.4 分辨率问题</h3><p>初始开机分辨率正常，在更换显卡驱动重装桌面后显示不正常（1024x768），需要更换分辨率</p>
+<p>使用网上的教程，用xrandr修改失效，经查阅资料后是显卡驱动的问题。</p>
+<p>在重装显卡驱动后恢复正常</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>小星
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="http://yuxin1999.github.io/2022/11/01/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%B7%A5%E4%BD%9C%E7%AB%99%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/">http://yuxin1999.github.io/2022/11/01/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%B7%A5%E4%BD%9C%E7%AB%99%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-11-01</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Linux-%E8%BF%90%E7%BB%B4/" class="post-tags__link button"># Linux 运维</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/10/30/Hello-World/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Hello World
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022&nbsp;-&nbsp;2022 <a href="/">小星居</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement('script');
+            hm.src = 'https://hm.baidu.com/hm.js?1823ec9f5d1ff7e32453c4e773a023a8';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
