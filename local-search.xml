@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>Leetcode图专题总结</title>
+    <link href="/2023/06/19/10-40-00/"/>
+    <url>/2023/06/19/10-40-00/</url>
+    
+    <content type="html"><![CDATA[<p>Tags: 图</p><p>记录一下各专题的刷题总结。<br>图专题的刷题总结如下。</p><p><img src="/images/leetcode/graph.png" alt="图专题.png"></p><h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><h2 id="DFS遍历"><a href="#DFS遍历" class="headerlink" title="DFS遍历"></a>DFS遍历</h2><ul><li>辅助栈+visited数组</li><li>递归+visited数组</li></ul><h3 id="遍历获取节点值-x2F-路径"><a href="#遍历获取节点值-x2F-路径" class="headerlink" title="遍历获取节点值&#x2F;路径"></a>遍历获取节点值&#x2F;路径</h3><p>🍉 通过dfs遍历有向无环图（无需visited数组），获取起点到终点的所有路径 <a href="https://leetcode.cn/problems/all-paths-from-source-to-target/">797 所有可能的路径</a> </p><p>🍉 通过dfx遍历无向图并且克隆（需要visited数组） <a href="https://leetcode.cn/problems/clone-graph/">133 克隆图</a> </p><ul><li>克隆图时，放入neighbor指针的不是原neibor，二是递归的新neighbor</li></ul><h3 id="遍历检查是否二分图"><a href="#遍历检查是否二分图" class="headerlink" title="遍历检查是否二分图"></a>遍历检查是否二分图</h3><p>🍉 通过标记颜色，确定邻居节点是否有同色 <a href="https://leetcode.cn/problems/is-graph-bipartite/">785 二分图判定</a> <a href="https://leetcode.cn/problems/possible-bipartition/">886 可能的二分法</a> </p><h2 id="BFS遍历"><a href="#BFS遍历" class="headerlink" title="BFS遍历"></a>BFS遍历</h2><ul><li>辅助队列+visited数组</li></ul><h3 id="遍历获取节点值-x2F-路径-1"><a href="#遍历获取节点值-x2F-路径-1" class="headerlink" title="遍历获取节点值&#x2F;路径"></a>遍历获取节点值&#x2F;路径</h3><p>🍉 通过bfs遍历有向无环图（无需visited数组），获取起点到终点的所有路径 <a href="https://leetcode.cn/problems/all-paths-from-source-to-target/">797 所有可能的路径</a> </p><p>🍉 通过bfs遍历无向图，需要visited数组 <a href="(https://leetcode.cn/problems/clone-graph/">133 克隆图</a> </p><h3 id="遍历检查是否二分图-1"><a href="#遍历检查是否二分图-1" class="headerlink" title="遍历检查是否二分图"></a>遍历检查是否二分图</h3><p>🍉 通过标记颜色，确定邻居节点是否有同色 <a href="https://leetcode.cn/problems/is-graph-bipartite/">785 二分图判定</a> <a href="https://leetcode.cn/problems/possible-bipartition/">886 可能的二分法</a> </p><h1 id="环检测与拓扑排序"><a href="#环检测与拓扑排序" class="headerlink" title="环检测与拓扑排序"></a>环检测与拓扑排序</h1><h2 id="dfs方法"><a href="#dfs方法" class="headerlink" title="dfs方法"></a>dfs方法</h2><h3 id="检测是否有环"><a href="#检测是否有环" class="headerlink" title="检测是否有环"></a>检测是否有环</h3><p>🍉 使用dfs遍历有向有环图（需要visited数组的三种状态：未访问，已访问，正在访问) <a href="https://leetcode.cn/problems/course-schedule/">207 课程表</a> </p><h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>🍉 使用dfs后序添加图中元素，并反转遍历数组以获得拓扑排序 <a href="https://leetcode.cn/problems/course-schedule-ii/">210 课程表Ⅱ</a> </p><h2 id="bfs-kahn算法"><a href="#bfs-kahn算法" class="headerlink" title="bfs: kahn算法"></a>bfs: kahn算法</h2><h3 id="检测是否有环-1"><a href="#检测是否有环-1" class="headerlink" title="检测是否有环"></a>检测是否有环</h3><p>🍉 使用入度数组，依次访问入度为0的节点并减少其邻居的入度，若有环，则环中元素不会被访问 <a href="https://leetcode.cn/problems/course-schedule/">207 课程表</a> </p><h3 id="拓扑排序-1"><a href="#拓扑排序-1" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>🍉 使用入度数组，依次将入度为0的节点加入拓扑排序数组 <a href="https://leetcode.cn/problems/course-schedule-ii/">210 课程表Ⅱ</a> </p><h1 id="并查集算法"><a href="#并查集算法" class="headerlink" title="并查集算法"></a>并查集算法</h1><h2 id="使用并查集解决岛屿类型问题"><a href="#使用并查集解决岛屿类型问题" class="headerlink" title="使用并查集解决岛屿类型问题"></a>使用并查集解决岛屿类型问题</h2><p>🍉 使用并查集连接图中节点，以解决岛屿类问题 <a href="https://leetcode.cn/problems/surrounded-regions/">130 被围绕的区域</a> </p><h2 id="使用并查集统计连接通量数量"><a href="#使用并查集统计连接通量数量" class="headerlink" title="使用并查集统计连接通量数量"></a>使用并查集统计连接通量数量</h2><p>🍉 使用并查集计算连接通量的数量 <a href="https://leetcode.cn/problems/number-of-provinces/">547 省份数量</a> </p><h1 id="最小生成树算法"><a href="#最小生成树算法" class="headerlink" title="最小生成树算法"></a>最小生成树算法</h1><h2 id="Kruskal最小生成树算法"><a href="#Kruskal最小生成树算法" class="headerlink" title="Kruskal最小生成树算法"></a>Kruskal最小生成树算法</h2><p>🍉 使用kruskal最小生成树算法，逐步在并查集中连接短边，以获得最小生成树 <a href="https://leetcode.cn/problems/min-cost-to-connect-all-points/">1584 连接所有点的最小费用</a> </p><h2 id="Prim最小生成树算法"><a href="#Prim最小生成树算法" class="headerlink" title="Prim最小生成树算法"></a>Prim最小生成树算法</h2><p>🍉 使用Prim最小生成树算法，为每个节点找到最小边和代表节点，以获得最小生成树 <a href="https://leetcode.cn/problems/min-cost-to-connect-all-points/">1584 连接所有点的最小费用</a> </p><h1 id="图的最短路径算法"><a href="#图的最短路径算法" class="headerlink" title="图的最短路径算法"></a>图的最短路径算法</h1><h2 id="Dijstra算法"><a href="#Dijstra算法" class="headerlink" title="Dijstra算法"></a>Dijstra算法</h2><p>🍉 使用邻接表，更新每个邻居节点的最短路径(概率最大路径） <a href="https://leetcode.cn/problems/path-with-maximum-probability/">1514 概率最大的路径</a> <a href="https://leetcode.cn/problems/network-delay-time/">743 网络延迟时间</a> </p><h2 id="Floyd-Warshall算法"><a href="#Floyd-Warshall算法" class="headerlink" title="Floyd-Warshall算法"></a>Floyd-Warshall算法</h2><p>🍉 使用邻接矩阵更新每个点的最短路径 <a href="https://leetcode.cn/problems/path-with-maximum-probability/">1514 概率最大的路径</a> <a href="https://leetcode.cn/problems/network-delay-time/">743 网络延迟时间</a> </p><h2 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h2><p>🍉 当存在限定次数时，使用动态规划，为第1~k-1次的最小值+本次cost <a href="https://leetcode.cn/problems/cheapest-flights-within-k-stops/">787 k站中转内最便宜的航班</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Leetcode</tag>
+      
+      <tag>图树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>小星学DSA丨关于图的一切</title>
     <link href="/2023/06/14/10-09-00/"/>
     <url>/2023/06/14/10-09-00/</url>

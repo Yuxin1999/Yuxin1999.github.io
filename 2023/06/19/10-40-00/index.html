@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="小星">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Tags: 图 记录一下各专题的刷题总结。图专题的刷题总结如下。  图的遍历DFS遍历 辅助栈+visited数组 递归+visited数组  遍历获取节点值&#x2F;路径🍉 通过dfs遍历有向无环图（无需visited数组），获取起点到终点的所有路径 797 所有可能的路径  🍉 通过dfx遍历无向图并且克隆（需要visited数组） 133 克隆图   克隆图时，放入neighbor指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode图专题总结">
+<meta property="og:url" content="http://rainystar.site/2023/06/19/10-40-00/index.html">
+<meta property="og:site_name" content="小星code">
+<meta property="og:description" content="Tags: 图 记录一下各专题的刷题总结。图专题的刷题总结如下。  图的遍历DFS遍历 辅助栈+visited数组 递归+visited数组  遍历获取节点值&#x2F;路径🍉 通过dfs遍历有向无环图（无需visited数组），获取起点到终点的所有路径 797 所有可能的路径  🍉 通过dfx遍历无向图并且克隆（需要visited数组） 133 克隆图   克隆图时，放入neighbor指针">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://rainystar.site/images/leetcode/graph.png">
+<meta property="article:published_time" content="2023-06-19T02:40:00.000Z">
+<meta property="article:modified_time" content="2023-06-19T02:40:28.935Z">
+<meta property="article:author" content="小星">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="图树">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://rainystar.site/images/leetcode/graph.png">
+  
+  
+  
+  <title>Leetcode图专题总结 - 小星code</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"rainystar.site","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小星code</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/cover/cover.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Leetcode图专题总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-19 10:40" pubdate>
+          2023年6月19日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Leetcode图专题总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Tags: 图</p>
+<p>记录一下各专题的刷题总结。<br>图专题的刷题总结如下。</p>
+<p><img src="/images/leetcode/graph.png" srcset="/img/loading.gif" lazyload alt="图专题.png"></p>
+<h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><h2 id="DFS遍历"><a href="#DFS遍历" class="headerlink" title="DFS遍历"></a>DFS遍历</h2><ul>
+<li>辅助栈+visited数组</li>
+<li>递归+visited数组</li>
+</ul>
+<h3 id="遍历获取节点值-x2F-路径"><a href="#遍历获取节点值-x2F-路径" class="headerlink" title="遍历获取节点值&#x2F;路径"></a>遍历获取节点值&#x2F;路径</h3><p>🍉 通过dfs遍历有向无环图（无需visited数组），获取起点到终点的所有路径 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/all-paths-from-source-to-target/">797 所有可能的路径</a> </p>
+<p>🍉 通过dfx遍历无向图并且克隆（需要visited数组） <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/clone-graph/">133 克隆图</a> </p>
+<ul>
+<li>克隆图时，放入neighbor指针的不是原neibor，二是递归的新neighbor</li>
+</ul>
+<h3 id="遍历检查是否二分图"><a href="#遍历检查是否二分图" class="headerlink" title="遍历检查是否二分图"></a>遍历检查是否二分图</h3><p>🍉 通过标记颜色，确定邻居节点是否有同色 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/is-graph-bipartite/">785 二分图判定</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/possible-bipartition/">886 可能的二分法</a> </p>
+<h2 id="BFS遍历"><a href="#BFS遍历" class="headerlink" title="BFS遍历"></a>BFS遍历</h2><ul>
+<li>辅助队列+visited数组</li>
+</ul>
+<h3 id="遍历获取节点值-x2F-路径-1"><a href="#遍历获取节点值-x2F-路径-1" class="headerlink" title="遍历获取节点值&#x2F;路径"></a>遍历获取节点值&#x2F;路径</h3><p>🍉 通过bfs遍历有向无环图（无需visited数组），获取起点到终点的所有路径 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/all-paths-from-source-to-target/">797 所有可能的路径</a> </p>
+<p>🍉 通过bfs遍历无向图，需要visited数组 <a href="(https://leetcode.cn/problems/clone-graph/">133 克隆图</a> </p>
+<h3 id="遍历检查是否二分图-1"><a href="#遍历检查是否二分图-1" class="headerlink" title="遍历检查是否二分图"></a>遍历检查是否二分图</h3><p>🍉 通过标记颜色，确定邻居节点是否有同色 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/is-graph-bipartite/">785 二分图判定</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/possible-bipartition/">886 可能的二分法</a> </p>
+<h1 id="环检测与拓扑排序"><a href="#环检测与拓扑排序" class="headerlink" title="环检测与拓扑排序"></a>环检测与拓扑排序</h1><h2 id="dfs方法"><a href="#dfs方法" class="headerlink" title="dfs方法"></a>dfs方法</h2><h3 id="检测是否有环"><a href="#检测是否有环" class="headerlink" title="检测是否有环"></a>检测是否有环</h3><p>🍉 使用dfs遍历有向有环图（需要visited数组的三种状态：未访问，已访问，正在访问) <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule/">207 课程表</a> </p>
+<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>🍉 使用dfs后序添加图中元素，并反转遍历数组以获得拓扑排序 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule-ii/">210 课程表Ⅱ</a> </p>
+<h2 id="bfs-kahn算法"><a href="#bfs-kahn算法" class="headerlink" title="bfs: kahn算法"></a>bfs: kahn算法</h2><h3 id="检测是否有环-1"><a href="#检测是否有环-1" class="headerlink" title="检测是否有环"></a>检测是否有环</h3><p>🍉 使用入度数组，依次访问入度为0的节点并减少其邻居的入度，若有环，则环中元素不会被访问 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule/">207 课程表</a> </p>
+<h3 id="拓扑排序-1"><a href="#拓扑排序-1" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><p>🍉 使用入度数组，依次将入度为0的节点加入拓扑排序数组 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule-ii/">210 课程表Ⅱ</a> </p>
+<h1 id="并查集算法"><a href="#并查集算法" class="headerlink" title="并查集算法"></a>并查集算法</h1><h2 id="使用并查集解决岛屿类型问题"><a href="#使用并查集解决岛屿类型问题" class="headerlink" title="使用并查集解决岛屿类型问题"></a>使用并查集解决岛屿类型问题</h2><p>🍉 使用并查集连接图中节点，以解决岛屿类问题 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/surrounded-regions/">130 被围绕的区域</a> </p>
+<h2 id="使用并查集统计连接通量数量"><a href="#使用并查集统计连接通量数量" class="headerlink" title="使用并查集统计连接通量数量"></a>使用并查集统计连接通量数量</h2><p>🍉 使用并查集计算连接通量的数量 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-provinces/">547 省份数量</a> </p>
+<h1 id="最小生成树算法"><a href="#最小生成树算法" class="headerlink" title="最小生成树算法"></a>最小生成树算法</h1><h2 id="Kruskal最小生成树算法"><a href="#Kruskal最小生成树算法" class="headerlink" title="Kruskal最小生成树算法"></a>Kruskal最小生成树算法</h2><p>🍉 使用kruskal最小生成树算法，逐步在并查集中连接短边，以获得最小生成树 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/min-cost-to-connect-all-points/">1584 连接所有点的最小费用</a> </p>
+<h2 id="Prim最小生成树算法"><a href="#Prim最小生成树算法" class="headerlink" title="Prim最小生成树算法"></a>Prim最小生成树算法</h2><p>🍉 使用Prim最小生成树算法，为每个节点找到最小边和代表节点，以获得最小生成树 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/min-cost-to-connect-all-points/">1584 连接所有点的最小费用</a> </p>
+<h1 id="图的最短路径算法"><a href="#图的最短路径算法" class="headerlink" title="图的最短路径算法"></a>图的最短路径算法</h1><h2 id="Dijstra算法"><a href="#Dijstra算法" class="headerlink" title="Dijstra算法"></a>Dijstra算法</h2><p>🍉 使用邻接表，更新每个邻居节点的最短路径(概率最大路径） <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-with-maximum-probability/">1514 概率最大的路径</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/network-delay-time/">743 网络延迟时间</a> </p>
+<h2 id="Floyd-Warshall算法"><a href="#Floyd-Warshall算法" class="headerlink" title="Floyd-Warshall算法"></a>Floyd-Warshall算法</h2><p>🍉 使用邻接矩阵更新每个点的最短路径 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-with-maximum-probability/">1514 概率最大的路径</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/network-delay-time/">743 网络延迟时间</a> </p>
+<h2 id="Bellman-Ford算法"><a href="#Bellman-Ford算法" class="headerlink" title="Bellman-Ford算法"></a>Bellman-Ford算法</h2><p>🍉 当存在限定次数时，使用动态规划，为第1~k-1次的最小值+本次cost <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cheapest-flights-within-k-stops/">787 k站中转内最便宜的航班</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Leetcode/">#Leetcode</a>
+      
+        <a href="/tags/%E5%9B%BE%E6%A0%91/">#图树</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Leetcode图专题总结</div>
+      <div>http://rainystar.site/2023/06/19/10-40-00/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>小星</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/14/10-09-00/" title="小星学DSA丨关于图的一切">
+                        <span class="hidden-mobile">小星学DSA丨关于图的一切</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
